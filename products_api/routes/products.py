@@ -1,24 +1,34 @@
 from fastapi import APIRouter, status
+from products_api.schemas.products import ProductListPublicSchema
 
 
 router = APIRouter()
 
-
-@router.get('/', status_code=status.HTTP_200_OK)
+@router.get(
+    path='/', 
+    status_code=status.HTTP_200_OK,
+        response_model=ProductListPublicSchema
+)
 async def list_products():
     return {
         'products': [
             {
                 'id': 1,
                 'name': 'Logitech MX Keys',
+                'price': 99.99,
+                'description': 'Wireless keyboard with backlit keys',
             },
             {
                 'id': 2,
                 'name': 'RTX 5070',
+                'price': 1299.99,
+                'description': 'High-performance graphics card',
             },
             {
                 'id': 3,
                 'name': 'SSD 1TB',
+                'price': 149.99,
+                'description': 'Fast solid-state drive for storage',
             },
         ]
     }
